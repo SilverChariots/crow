@@ -9,6 +9,7 @@
     "express": "3.2.1",
     "ejs": "*",
     "less-middleware": "*",
+    "express-dynamic-router": "*",
     "cassandra-client": "*"
   }
 }

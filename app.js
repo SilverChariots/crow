@@ -5,8 +5,6 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
-  , cassandra = require('./routes/cassandra')
   , http = require('http')
   , path = require('path');
 
@@ -31,9 +29,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/',routes.index);
-app.get('/users', user.list);
-app.get('/cassandra', cassandra.index);
+app.get('/', routes.index);
+require("express-dynamic-router").setRoutesDir(__dirname + '/routes').register(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
